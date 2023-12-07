@@ -1,14 +1,13 @@
 #0. Import a simple function from a simple file
 def add(a,b):
-    return a+b
+    return (a+b)
 
-a: ["__1__"] 
-b: ["__2__"]
+a=1
+b=2
 
-a="1"
-b="2"
-result=add(a,b)
-
-sum=int(a)+int(b)
-
-print(sum)
+if [__name__]==["__main__"]
+from add_0 import add
+print("{}+{}".format(a,b))
+1+2=3
+add= ["a"+"b"] 
+print(add)
