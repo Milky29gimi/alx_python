@@ -1,10 +1,10 @@
 #0. Import a simple function from a simple file
 
-def add(a,b):
-    return (a+b)
+if __name__ == "__main__":
+ import add_0
 
-a=1
-b=2
+ a = 1
+ b = 2
 
-[__name__]==["__main__"]
-print ("{}+{}={}".format(a,b,add(a,b)))
+result = add_0.add(a,b)
+print("a = {} and b = {} FAKE add() => {} - {}".format(a,b,a,b))
