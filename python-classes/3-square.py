@@ -1,3 +1,7 @@
+""" create a class called square
+and define a private instance attribute calles size. 
+Size validation- input validater"""
+
 class Square:
     def __init__(self, size=0):
         self.size = size

@@ -1,4 +1,7 @@
-# 1. Size validation
+
+""" create a class called square
+and define a private instance attribute calles size. 
+Size validation- input validater"""
 
 class Square:
     __size= ()
