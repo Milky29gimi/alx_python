@@ -1,3 +1,4 @@
+
 # 0. Square with size
 
 class Square:
