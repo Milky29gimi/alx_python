@@ -29,6 +29,7 @@ class Square:
 
     def area(self):
         return self.__size ** 2
+        
         """ @__size:is a private instance attribut
         Size validation- input validater  """
     
