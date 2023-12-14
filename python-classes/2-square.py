@@ -1,17 +1,13 @@
-""" create a class called square
-and define a private instance attribute calles size. 
-Size validation- input validater 
-the area () method claculates the area of the square by multipling."""
-
+"""Area of a sqyare"""
 class Square:
-       """A class that defines a square.
+    """A class that defines a square.
 
     Attributes:
         __size (int): Represents the size of the square.
     """
 
     def __init__(self, size=0):
-          """Initializes a Square instance with an optional size parameter.
+        """Initializes a Square instance with an optional size parameter.
 
         Args:
             size (int): The size of the square. Defaults to 0.
@@ -20,16 +16,12 @@ class Square:
             TypeError: If the size parameter is not an integer.
             ValueError: If the size parameter is less than 0.
         """
-
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
-
         elif size < 0:
             raise ValueError("size must be >= 0")
-
-        self.__size = size
-       
-
+        else:
+            self.__size = size
 
     def area(self):
         """Calculates the area of the square.
