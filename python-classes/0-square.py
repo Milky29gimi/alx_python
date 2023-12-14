@@ -1,4 +1,4 @@
-# 0. Square with size
+""" create a class called square """
 
 class Square:
     """
@@ -6,6 +6,6 @@ class Square:
     """
     def __init__(self, size):
         """
-        @__size:is a private instance varible
+        @__size:is a private instance attribut
         """
         self.__size = size
