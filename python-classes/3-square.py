@@ -26,11 +26,13 @@ class Square:
 
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
+            
             """ @__size:is a private instance attribut
         Size validation- input validater  """
 
         elif value < 0:
             raise ValueError("size must be >= 0")
+
             """ @__size:is a private instance attribut
         Size validation- input validater  """
 
