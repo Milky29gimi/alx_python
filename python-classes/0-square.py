@@ -1,8 +1,5 @@
 # 0. Square with size
 
 class Square:
-    __size= ()
-
-size = Square()
-
-print(my_square.size)
+    dif __init__ (self, size):
+        self.__ size= size
