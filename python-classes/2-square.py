@@ -4,6 +4,9 @@ Size validation- input validater
 the area () method claculates the area of the square by multipling."""
 
 class Square:
+      """
+    This id a Square class.
+    """
     def __init__(self, size=0):
         if not isinstance(size, int):
             raise TypeError("size must be an integer")

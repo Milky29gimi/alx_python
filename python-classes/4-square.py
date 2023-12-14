@@ -3,6 +3,9 @@ and define a private instance attribute calles size.
 Size validation- input validater"""
 
 class Square:
+    """
+    This id a Square class.
+    """
     def __init__(self, size=0):
         self.size = size
 
