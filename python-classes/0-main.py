@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 from 0-square import Square
 
 my_square = Square(3)
