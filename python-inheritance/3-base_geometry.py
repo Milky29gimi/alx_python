@@ -1,9 +1,4 @@
- """
-    This id a Square class.
-    """
-    class BaseGeometry:
+"geometry Module"
+class BaseGeometry:
+    """An empty class representing BaseGeometry."""
     pass
-    
-     """
-    This id a Square class.
-    """

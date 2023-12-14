@@ -1,9 +1,7 @@
- """
-    This id a Square class.
-    """
+"""Improve Geometry"""
 class BaseGeometry:
-    def area (self):
-        raise Exception("area () is not implemented")
-         """
-    This id a Square class.
-    """
+    """A base class representing geometric operations."""
+
+    def area(self):
+        """Raises an Exception indicating that area() is not implemented."""
+        raise Exception("area() is not implemented")
