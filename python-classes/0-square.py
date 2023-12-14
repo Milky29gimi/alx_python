@@ -16,6 +16,3 @@ class Square:
     def perimeter(self):
         return 4 * self.__size
 
-if __name__ == "__main__":
-    d = Square(4)
-    print(d.get_size)
