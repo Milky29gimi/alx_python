@@ -1,1 +1,1 @@
-all python of week one
+all python tasks
