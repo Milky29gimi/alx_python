@@ -1,3 +1,4 @@
+"""Python script that fetches https://alu-intranet.hbtn.io/status"""
 import requests
 
 url = "https://alu-intranet.hbtn.io/status"
