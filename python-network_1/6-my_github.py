@@ -16,3 +16,5 @@ if len(sys.argv) > 2:
         print(f"Request failed with status code {response.status_code}")
 else:
     print("Please provide your GitHub username and personal access token as arguments.")
+
+print(response.status_code)
