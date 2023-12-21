@@ -1,113 +1,56 @@
-"""create a class named Rectangle that inherits from Base """
-class Rectangle:
-    """ define the class rectangle"""
+"""create a class named Square that inherits from Rectangle """
+from models.base import Base
+
+class Rectangle(Base):
+    """ define the class Square"""
     def __init__(self, width, height, x=0, y=0, id=None):
-         """ define the class rectangle"""
-        self.__width = None
-        self.__height = None
-        self.__x = None
-        self.__y = None
-        self.set_width(width)
-        self.set_height(height)
-        self.set_x(x)
-        self.set_y(y)
-        self.id = id
-""" define the class rectangle"""
-    def get_width(self):
-         """ define the class rectangle"""
+        """ define the class Square"""
+        super().__init__(id)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
+
+    @property
+    def width(self):
+        """ define the class Square"""
         return self.__width
-""" define the class rectangle"""
-    def set_width(self, width):
-         """ define the class rectangle"""
-        if not isinstance(width, int):
-            raise TypeError("width must be an integer")
-            """ define the class rectangle"""
-        if width <= 0:
-            raise ValueError("width must be > 0")
-            """ define the class rectangle"""
-        self.__width = width
 
-""" define the class rectangle"""
-    def get_height(self):
-         """ define the class rectangle"""
+    @width.setter
+    def width(self, value):
+        """ define the class Square"""
+        if value <= 0:
+            raise ValueError("Width must be a positive number.")
+        self.__width = value
+
+    @property
+    def height(self):
+        """ define the class Square"""
         return self.__height
-""" define the class rectangle"""
 
-    def set_height(self, height):
-        """ define the class rectangle"""
-        if not isinstance(height, int):
-            raise TypeError("height must be an integer")
-            """ define the class rectangle"""
-        if height <= 0:
-            raise ValueError("height must be > 0")
-            """ define the class rectangle"""
-        self.__height = height
+    @height.setter
+    def height(self, value):
+        """ define the class Square"""
+        if value <= 0:
+            raise ValueError("Height must be a positive number.")
+        self.__height = value
 
-""" define the class rectangle"""
-    def get_x(self):
-        """ define the class rectangle"""
+    @property
+    def x(self):
+        """ define the class Square"""
         return self.__x
 
-""" define the class rectangle"""
-    def set_x(self, x):
-        """ define the class rectangle"""
-        if not isinstance(x, int):
-            raise TypeError("x must be an integer")
-            """ define the class rectangle"""
-        if x < 0:
-            raise ValueError("x must be >= 0")
-            """ define the class rectangle"""
-        self.__x = x
+    @x.setter
+    def x(self, value):
+        """ define the class Square"""
+        self.__x = value
 
-""" define the class rectangle"""
-    def get_y(self):
-        """ define the class rectangle"""
+    @property
+    def y(self):
+        """ define the class Square"""
         return self.__y
 
-   """ define the class rectangle"""
-    def set_y(self, y):
-        """ define the class rectangle"""
-        if not isinstance(y, int):
-            raise TypeError("y must be an integer")
-        if y < 0:
-            raise ValueError("y must be >= 0")
-        self.__y = y
-
-""" define the class rectangle"""
-    def area(self):
-        """ define the class rectangle"""
-        return self.__width * self.__height
-
-""" define the class rectangle"""
-    def display(self):
-        """ define the class rectangle"""
-        for _ in range(self.__y):
-            print()
-        for _ in range(self.__height):
-            print(" " * self.__x + "#" * self.__width)
-
-""" define the class rectangle"""
-    def update(self, *args, **kwargs):
-        """ define the class rectangle"""
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.set_width(args[1])
-            if len(args) >= 3:
-                self.set_height(args[2])
-            if len(args) >= 4:
-                self.set_x(args[3])
-            if len(args) >= 5:
-                self.set_y(args[4])
-        else:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-                """ define the class rectangle"""
-                
-""" define the class rectangle"""
-    def __str__(self):
-        """ define the class rectangle"""
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
-
-        """create a class named Rectangle that inherits from Base """
+    @y.setter
+    def y(self, value):
+        """ define the class Square"""
+        self.__y = value
