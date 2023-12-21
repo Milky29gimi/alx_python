@@ -1,17 +1,22 @@
 """create a class named Square that inherits from Rectangle """
 class Square:
     """ define the class Square"""
+
     def __init__(self, size):
         self.__width = 0
         self.__height = 0
         self.__size = size
-""" define the class Square"""
+
+""" Call the super class with id, x, y, width and height 
+- this super call will use the logic of the __init__ of 
+the Rectangle class. The width and height must be assigned
+ to the value of size"""
     @property
     def size(self):
         return self.__size
-""" define the class Square"""
+
+"""Update the class Square by adding the public getter and setter size"""
     @size.setter
-    """ define the class Square"""
     def size(self, value)
     """ define the class Square"""
         if value <= 0:
