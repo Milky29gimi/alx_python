@@ -1,5 +1,5 @@
 import os    
-    # Create the models package if it doesn't exist
+    # Create the models package 
 if not os.path.exists("models"):
     os.mkdir("models")
     with open("models/__init__.py", "w"):
