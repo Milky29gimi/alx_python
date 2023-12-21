@@ -2,6 +2,7 @@
 class Rectangle:
     """ define the class rectangle"""
     def __init__(self, width, height, x=0, y=0, id=None):
+         """ define the class rectangle"""
         self.__width = None
         self.__height = None
         self.__x = None
@@ -13,9 +14,11 @@ class Rectangle:
         self.id = id
 """ define the class rectangle"""
     def get_width(self):
+         """ define the class rectangle"""
         return self.__width
 """ define the class rectangle"""
     def set_width(self, width):
+         """ define the class rectangle"""
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
             """ define the class rectangle"""
@@ -26,10 +29,12 @@ class Rectangle:
 
 """ define the class rectangle"""
     def get_height(self):
+         """ define the class rectangle"""
         return self.__height
 """ define the class rectangle"""
 
     def set_height(self, height):
+        """ define the class rectangle"""
         if not isinstance(height, int):
             raise TypeError("height must be an integer")
             """ define the class rectangle"""
@@ -40,10 +45,12 @@ class Rectangle:
 
 """ define the class rectangle"""
     def get_x(self):
+        """ define the class rectangle"""
         return self.__x
 
 """ define the class rectangle"""
     def set_x(self, x):
+        """ define the class rectangle"""
         if not isinstance(x, int):
             raise TypeError("x must be an integer")
             """ define the class rectangle"""
@@ -54,10 +61,12 @@ class Rectangle:
 
 """ define the class rectangle"""
     def get_y(self):
+        """ define the class rectangle"""
         return self.__y
 
    """ define the class rectangle"""
     def set_y(self, y):
+        """ define the class rectangle"""
         if not isinstance(y, int):
             raise TypeError("y must be an integer")
         if y < 0:
@@ -66,10 +75,12 @@ class Rectangle:
 
 """ define the class rectangle"""
     def area(self):
+        """ define the class rectangle"""
         return self.__width * self.__height
 
 """ define the class rectangle"""
     def display(self):
+        """ define the class rectangle"""
         for _ in range(self.__y):
             print()
         for _ in range(self.__height):
@@ -77,6 +88,7 @@ class Rectangle:
 
 """ define the class rectangle"""
     def update(self, *args, **kwargs):
+        """ define the class rectangle"""
         if args:
             if len(args) >= 1:
                 self.id = args[0]
@@ -95,4 +107,7 @@ class Rectangle:
                 
 """ define the class rectangle"""
     def __str__(self):
+        """ define the class rectangle"""
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+
+        """create a class named Rectangle that inherits from Base """
