@@ -40,8 +40,8 @@ class Rectangle(Base):
         self.__height = value
 
     @property
-    def x(self)
-    """ define the class Rectangle"""
+    def x(self):
+        """ define the class Rectangle"""
         return self.__x
 
     @x.setter
