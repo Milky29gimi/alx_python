@@ -3,21 +3,28 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     """ define the class Square"""
-    def __init__(self, size, x=0, y=0, id=None):
-        """ define the class Square"""
-        super().__init__(size, size, x, y, id)
+    def __init__(self, size):
+        self.__width = 0
+        self.__height = 0
+        self.__size = size
 
+""" define the class Square"""
     @property
     def size(self):
-        """ define the class Square"""
-        return self.width
+        return self.__size
 
+""" define the class Square"""
     @size.setter
     def size(self, value):
-        """ define the class Square"""
-        self.width = value
-        self.height = value
+    """ define the class Square"""
+    def size(self, value)
+    """ define the class Square"""
+        if value <= 0:
+            raise ValueError("Size must be a positive number.")
+        self.__width = value
+        self.__height = value
+        self.__size = value
 
-    def __str__(self):
-        """ define the class Square"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+""" define the class Square"""
+    def get_area(self):
+        return self.__width * self.__height
