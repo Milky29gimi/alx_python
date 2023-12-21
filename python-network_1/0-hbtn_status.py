@@ -1,12 +1,14 @@
 """Python script that fetches https://alu-intranet.hbtn.io/status"""
 import requests
 
-url = "https://alu-intranet.hbtn.io/status"
+url = 'https://alu-intranet.hbtn.io/status'
 response = requests.get(url)
 
 if response.status_code == 200:
-    data = response.json()
-    for key, value in data.items():
-        print(f"- {key}: {value}")
+    print("Status code: 200 OK")
+    print("Response body:")
+    for line in response.text.splitlines():
+        print(f"\t- {line}")
 else:
-    print(f"Error: {response.status_code}")
+    print(f"Request failed with status code {response.status_code}")
+    
