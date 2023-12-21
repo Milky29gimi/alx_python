@@ -1,10 +1,10 @@
-"""create a class named Square that inherits from Rectangle """
+"""create a class named Rectangle that inherits from Base """
 from models.base import Base
 
 class Rectangle(Base):
-    """ define the class Square"""
+    """ define the class Rectangle"""
     def __init__(self, width, height, x=0, y=0, id=None):
-        """ define the class Square"""
+        """ define the class Rectangle"""
         super().__init__(id)
         self.width = width
         self.height = height
@@ -13,44 +13,56 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """ define the class Square"""
+        """ define the class Rectangle"""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """ define the class Square"""
+        """ define the class Rectangle"""
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer.")
         if value <= 0:
-            raise ValueError("Width must be a positive number.")
+            raise ValueError("width must be > 0.")
         self.__width = value
 
     @property
     def height(self):
-        """ define the class Square"""
+        """ define the class Rectangle"""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """ define the class Square"""
+        """ define the class Rectangle"""
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer.")
         if value <= 0:
-            raise ValueError("Height must be a positive number.")
+            raise ValueError("height must be > 0.")
         self.__height = value
 
     @property
     def x(self):
-        """ define the class Square"""
+        """ define the class Rectangle"""
         return self.__x
 
     @x.setter
     def x(self, value):
-        """ define the class Square"""
+        """ define the class Rectangle"""
+        if not isinstance(value, int):
+            raise TypeError("x must be an integer.")
+        if value < 0:
+            raise ValueError("x must be >= 0.")
         self.__x = value
 
     @property
     def y(self):
-        """ define the class Square"""
+        """ define the class Rectangle"""
         return self.__y
 
     @y.setter
     def y(self, value):
-        """ define the class Square"""
+        """ define the class Rectangle"""
+        if not isinstance(value, int):
+            raise TypeError("y must be an integer.")
+        if value < 0:
+            raise ValueError("y must be >= 0.")
         self.__y = value
