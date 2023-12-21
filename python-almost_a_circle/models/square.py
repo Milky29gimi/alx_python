@@ -18,6 +18,11 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
+    @property
+    def area(self):
+        """ define the class Square"""
+        return self.width * self.height   
+
     def __str__(self):
         """ define the class Square"""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
