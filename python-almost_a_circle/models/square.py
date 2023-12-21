@@ -1,28 +1,48 @@
-"""create a class named Square that inherits from Rectangle """
+""" squares """
 from models.rectangle import Rectangle
 
 class Square(Rectangle):
-    """ define the class Square"""
+    """
+    Square class inheriting from Rectangle.
+    """
+
     def __init__(self, size, x=0, y=0, id=None):
-        """ define the class Square"""
-        super().__init__(size, size, x, y, id)
+        """
+        Initializes a Square object.
+
+        Args:
+            size (int): Size of the square.
+            x (int, optional): x-coordinate of the square. Defaults to 0.
+            y (int, optional): y-coordinate of the square. Defaults to 0.
+            id (int, optional): Identifier for the object. Defaults to None.
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than or equal to 0.
+        """
+        super().__init__(size, size, x, y, id)  # Calls the superclass constructor with required arguments
 
     @property
     def size(self):
-        """ define the class Square"""
+        """
+        Getter for size attribute.
+
+        Returns:
+            int: The size of the square.
+        """
         return self.width
 
     @size.setter
     def size(self, value):
-        """ define the class Square"""
+        """
+        Setter for size attribute.
+
+        Args:
+            value (int): The value to set for the size.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is less than or equal to 0.
+        """
         self.width = value
         self.height = value
-
-    @property
-    def area(self):
-        """ define the class Square"""
-        return self.width * self.height   
-
-    def __str__(self):
-        """ define the class Square"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
