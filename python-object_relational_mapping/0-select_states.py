@@ -1,36 +1,30 @@
-#!/usr/bin/python3
-import MySQLdb
-import sys
+# A script that lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa:
+import mysql.connector
 
-def list_states(username, password, database):
-    # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+# Connect to the database
+cnx = mysql.connector.connect(
+    host='<localhost>',
+    user='<milkly kerenso>',
+    password='<Abdi29gimi!>',
+    database='hbtn_0d_usa'
+)
 
-    # Create a cursor object to interact with the database
-    cursor = db.cursor()
+# Create a cursor object to execute SQL queries
+cursor = cnx.cursor()
 
-    # Execute the SQL query to retrieve states sorted by id
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+# Define the SQL query
+query = "SELECT cities.name FROM cities, states WHERE cities.state_id = states.id AND states.name = 'California' ORDER BY cities.id ASC"
 
-    # Fetch all the rows
-    rows = cursor.fetchall()
+# Execute the query
+cursor.execute(query)
 
-    # Display results
-    for row in rows:
-        print(row)
+# Fetch all the results
+results = cursor.fetchall()
 
-    # Close cursor and database connection
-    cursor.close()
-    db.close()
+# Print the cities
+for city in results:
+    print(city[0])
 
-if name == "__main__":
-    # Check if all three arguments are provided
-    if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
-        sys.exit(1)
-
-    # Get MySQL credentials from command line arguments
-    username, password, database = sys.argv[1:4]
-
-    # Call the function to list states
-    list_states(username, password, database)
+# Close the cursor and connection
+cursor.close()
+cnx.close()
