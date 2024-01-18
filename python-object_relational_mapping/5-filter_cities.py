@@ -29,12 +29,11 @@ results = cursor.fetchall()
 
 # Check if any results were found
 if len(results) == 0:
-    print("No cities found for the specified state.")
+    print(f"No cities found for the specified state '{state_name}'.")
 else:
     # Print the cities
-    for row in results:
-        city_id, city_name = row
-        print(f"{city_id}: {city_name} ({state_name})")
+    cities = [row[1] for row in results]
+    print(', '.join(cities))
 
 # Close the cursor and database connection
 cursor.close()
