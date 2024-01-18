@@ -1,31 +1,22 @@
 # A script that lists all cities from the database hbtn_0e_4_usa
 import MySQLdb
-import sys
+from sys import argv
 
-# Get MySQL username, password, and database name from command-line arguments
-username = sys.argv[1]
-password = sys.argv[2]
-database = sys.argv[3]
+#connecting to mysqldb
+db = MySQLdb.connect(user=argv[1], passwd=argv[2], db=argv[3])
 
-# Connect to the MySQL server
-db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
+#getting a cursor 
+cur = db.cursor()
 
-# Create a cursor object to execute SQL queries
-cursor = db.cursor()
+# executing a script that lists all cities from the database
+cur.execute("SELECT cities.id, cities.name, states.name FROM cities, states WHERE cities.state_id = states.id ORDER BY cities.id ASC")
 
-# Define the SQL query
-query = "SELECT * FROM cities ORDER BY id ASC"
+#printing result 
+myresult = cur.fetchall()
+for state in myresult:
+  print(state)
 
-# Execute the query
-cursor.execute(query)
 
-# Fetch all the results
-results = cursor.fetchall()
-
-# Print the cities
-for city in results:
-    print(city)
-
-# Close the cursor and connection
-cursor.close()
-db.close()
+# Closing all cursors and databases 
+cur.close()
+db.close() 

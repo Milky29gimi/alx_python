@@ -1,31 +1,23 @@
 # A script that lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa:
 import MySQLdb
-import sys
+from sys import argv
 
-# Get MySQL username, password, and database name from command-line arguments
-username = sys.argv[1]
-password = sys.argv[2]
-database = sys.argv[3]
+#connecting to mysqldb
+db = MySQLdb.connect(user=argv[1], passwd=argv[2], db=argv[3])
 
-# Connect to the MySQL server
-db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
+#getting a cursor 
+cur = db.cursor()
 
-# Create a cursor object to execute SQL queries
-cursor = db.cursor()
+# executing a script that lists all states with a name starting with N
+cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
 
-# Define the SQL query
-query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
 
-# Execute the query
-cursor.execute(query)
-#
-# Fetch all the results
-results = cursor.fetchall()
+#printing result
+myresult = cur.fetchall()
+for state in myresult:
+  print(state)
 
-# Print the states
-for state in results:
-    print(state)
 
-# Close the cursor and connection
-cursor.close()
+# Closing all cursors and databases
+cur.close()
 db.close()
