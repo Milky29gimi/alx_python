@@ -9,10 +9,13 @@ username = sys.argv[1]
 password = sys.argv[2]
 database = sys.argv[3]
 
-# Connect to the MySQL server
-engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}')
+# Define the MySQL connection URL
+connection_url = f'mysql://{username}:{password}@localhost:3306/{database}'
 
-# Bind the engine to the metadata of the Base class
+# Create the SQLAlchemy engine
+engine = create_engine(connection_url)
+
+# Bind the engine to the Base class
 Base.metadata.bind = engine
 
 # Create a session factory
@@ -21,14 +24,14 @@ Session = sessionmaker(bind=engine)
 # Create a session
 session = Session()
 
-# Query the first State object
-state = session.query(State).order_by(State.id).first()
+# Retrieve the first State object based on states.id
+first_state = session.query(State).order_by(State.id).first()
 
-# Check if state exists
-if state is None:
+# Display the result
+if first_state is None:
     print("Nothing")
 else:
-    print(f"{state.id}: {state.name}")
+    print(f"{first_state.id}: {first_state.name}")
 
 # Close the session
 session.close()
