@@ -4,9 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
+# class states
 class State(Base):
+    # table name
     tablename = 'states'
-
+# id column name
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     name = Column(String(128), nullable=False)
