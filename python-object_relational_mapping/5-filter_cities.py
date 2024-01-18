@@ -16,7 +16,7 @@ cursor = db.cursor()
 
 # Execute the query to retrieve all cities of the given state
 query = f"""
-    SELECT cities.id, cities.name
+    SELECT cities.name
     FROM cities
     JOIN states ON cities.state_id = states.id
     WHERE states.name = %s
@@ -32,7 +32,7 @@ if len(results) == 0:
     print(f"No cities found for the specified state '{state_name}'.")
 else:
     # Print the cities
-    cities = [row[1] for row in results]
+    cities = [row[0] for row in results]
     print(', '.join(cities))
 
 # Close the cursor and database connection
