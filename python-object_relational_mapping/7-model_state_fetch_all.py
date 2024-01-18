@@ -34,3 +34,13 @@ for state in states:
 
 # Close the session
 session.close()
+
+# Retrieve all State objects and sort them by states.id in ascending order
+states = session.query(State).order_by(State.id).all()
+
+# Display the results
+for state in states:
+    print(f"{state.id}: {state.name}")
+
+# Close the session
+session.close()
