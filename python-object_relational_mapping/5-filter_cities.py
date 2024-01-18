@@ -1,6 +1,6 @@
 # A script that takes in the name of a state as an argument and lists all cities of that state, 
+import sys
 import MySQLdb
-from sys import argv
 
 # Get MySQL username, password, database name, and state name from command-line arguments
 username = sys.argv[1]
