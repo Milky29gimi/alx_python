@@ -25,13 +25,13 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Retrieve the first State object based on states.id
-first_state = session.query(State).order_by(State.id).first()
+first_state = session.query(State).order_by(State.id.asc()).first()
 
 # Display the result
-if first_state is None:
-    print("Nothing")
-else:
+if first_state:
     print(f"{first_state.id}: {first_state.name}")
+else:
+    print("Nothing")
 
 # Close the session
 session.close()
