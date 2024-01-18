@@ -8,7 +8,7 @@ password = sys.argv[2]
 database = sys.argv[3]
 
 # Connect to the MySQL server
-db = MySQLdb.connect(host='localhost', port=3306, user=milky kerenso, passwd=Abdi29gimi!, db=hbtn_0e_0_usa)
+db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
 
 # Create a cursor object to execute SQL queries
 cursor = db.cursor()
