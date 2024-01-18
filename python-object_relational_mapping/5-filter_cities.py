@@ -1,6 +1,6 @@
 # A script that takes in the name of a state as an argument and lists all cities of that state, 
-import sys
 import MySQLdb
+from sys import argv
 
 # Get MySQL username, password, database name, and state name from command-line arguments
 username = sys.argv[1]
@@ -35,10 +35,7 @@ else:
     cities = [row[0] for row in results]
     print(', '.join(cities))
 
-#printing result 
-myresult = cur.fetchall()
-for state in myresult:
-  print(state)
+
 
 # Close the cursor and database connection
 cursor.close()
