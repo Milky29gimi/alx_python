@@ -18,7 +18,7 @@ query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
 
 # Execute the query
 cursor.execute(query)
-
+#
 # Fetch all the results
 results = cursor.fetchall()
 
