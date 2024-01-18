@@ -6,7 +6,9 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
+ """
+    Represents a state in the states table.
+    """
 class State(Base):
     """
     Represents a state in the states table.
