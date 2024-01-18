@@ -1,40 +1,38 @@
 # A script that takes in the name of a state as an argument and lists all cities of that state, 
 
-import MySQLdb
 import sys
+import MySQLdb
 
-def list_cities(username, password, database, state_name):
-    # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+# Get MySQL username, password, database name, and state name from command-line arguments
+username = sys.argv[1]
+password = sys.argv[2]
+database = sys.argv[3]
+state_name = sys.argv[4]
 
-    # Create a cursor object to interact with the database
-    cursor = db.cursor()
+# Connect to the MySQL server
+db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
 
-    # Use a single execute() statement to retrieve and display results
-    cursor.execute("SELECT cities.id, cities.name FROM cities \
-                    JOIN states ON cities.state_id = states.id \
-                    WHERE states.name = %s \
-                    ORDER BY cities.id ASC", (state_name,))
+# Create a cursor
+cursor = db.cursor()
 
-    # Fetch all the rows
-    rows = cursor.fetchall()
+# Execute the query to retrieve all cities of the given state
+query = f"""
+    SELECT cities.id, cities.name, states.name
+    FROM cities
+    JOIN states ON cities.state_id = states.id
+    WHERE states.name = '{state_name}'
+    ORDER BY cities.id ASC
+"""
+cursor.execute(query)
 
-    # Display results
-    for row in rows:
-        print(row)
+# Fetch all the results
+results = cursor.fetchall()
 
-    # Close cursor and database connection
-    cursor.close()
-    db.close()
+# Print the cities
+for row in results:
+    city_id, city_name, state_name = row
+    print(f"{city_id}: {city_name} ({state_name})")
 
-if name == "__main__":
-    # Check if all four arguments are provided
-    if len(sys.argv) != 5:
-        print("Usage: {} <username> <password> <database> <state_name>".format(sys.argv[0]))
-        sys.exit(1)
-
-    # Get MySQL credentials and state name from command line arguments
-    username, password, database, state_name = sys.argv[1:5]
-
-    # Call the function to list cities of the specified state
-    list_cities(username, password, database, state_name)
+# Close the cursor and database connection
+cursor.close()
+db.close()
