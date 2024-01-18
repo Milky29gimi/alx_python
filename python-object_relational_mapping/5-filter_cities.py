@@ -1,4 +1,5 @@
-# A script that lists all states from the database hbtn_0e_0_usa:
+# A script that takes in the name of a state as an argument and lists all cities of that state, 
+
 import MySQLdb
 import sys
 
@@ -15,7 +16,13 @@ db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password
 cursor = db.cursor()
 
 # Define the SQL query with parameterized query
-query = "SELECT * FROM cities WHERE state_id = (SELECT id FROM states WHERE name = %s) ORDER BY id ASC"
+query = """
+    SELECT cities.id, cities.name, states.name
+    FROM cities
+    JOIN states ON cities.state_id = states.id
+    WHERE states.name = %s
+    ORDER BY cities.id ASC
+"""
 
 # Execute the query with the state name as a parameter
 cursor.execute(query, (state_name,))
@@ -24,8 +31,9 @@ cursor.execute(query, (state_name,))
 results = cursor.fetchall()
 
 # Print the cities
-for city in results:
-    print(city)
+for row in results:
+    city_id, city_name, state_name = row
+    print(f"{city_id}: {city_name} ({state_name})")
 
 # Close the cursor and connection
 cursor.close()
