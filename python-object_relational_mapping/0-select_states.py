@@ -1,19 +1,20 @@
 # A  script that lists all states from the database hbtn_0e_0_usa:
-import mysql.connector
+import MySQLdb
+import sys
 
-# Connect to the database
-cnx = mysql.connector.connect(
-    host='<localhost>',
-    user='<milkly kerenso>',
-    password='<Abdi29gimi!>',
-    database='hbtn_0d_usa'
-)
+# Get MySQL username, password, and database name from command-line arguments
+username = sys.argv[1]
+password = sys.argv[2]
+database = sys.argv[3]
+
+# Connect to the MySQL server
+db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
 
 # Create a cursor object to execute SQL queries
-cursor = cnx.cursor()
+cursor = db.cursor()
 
 # Define the SQL query
-query = "SELECT cities.name FROM cities, states WHERE cities.state_id = states.id AND states.name = 'California' ORDER BY cities.id ASC"
+query = "SELECT * FROM states ORDER BY id ASC"
 
 # Execute the query
 cursor.execute(query)
@@ -21,10 +22,10 @@ cursor.execute(query)
 # Fetch all the results
 results = cursor.fetchall()
 
-# Print the cities
-for city in results:
-    print(city[0])
+# Print the states
+for state in results:
+    print(state)
 
 # Close the cursor and connection
 cursor.close()
-cnx.close()
+db.close()
