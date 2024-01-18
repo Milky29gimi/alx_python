@@ -33,5 +33,3 @@ if first_state:
 else:
     print("Nothing")
 
-# Close the session
-session.close()
