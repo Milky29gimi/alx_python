@@ -1,5 +1,6 @@
 # All states via SQLAlchemy
 
+import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
@@ -9,10 +10,13 @@ username = sys.argv[1]
 password = sys.argv[2]
 database = sys.argv[3]
 
-# Connect to the MySQL server
-engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}')
+# Define the MySQL connection URL
+connection_url = f'mysql://{username}:{password}@localhost:3306/{database}'
 
-# Bind the engine to the metadata of the Base class
+# Create the SQLAlchemy engine
+engine = create_engine(connection_url)
+
+# Bind the engine to the Base class
 Base.metadata.bind = engine
 
 # Create a session factory
@@ -21,10 +25,10 @@ Session = sessionmaker(bind=engine)
 # Create a session
 session = Session()
 
-# Query all State objects and order by id
+# Retrieve all State objects and sort them by states.id in ascending order
 states = session.query(State).order_by(State.id).all()
 
-# Print the states
+# Display the results
 for state in states:
     print(f"{state.id}: {state.name}")
 
