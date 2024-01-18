@@ -1,33 +1,32 @@
-#!/usr/bin/python3
+# A script that takes in an argument and displays all values in the states table of hbtn_0e_0_usa where name matches the argument.
 import MySQLdb
-from sys import argv
+import sys
 
-if name == "__main__":
-    # Check if all four arguments are provided
-    if len(argv) != 5:
-        print("Usage: {} <username> <password> <database> <state_name>".format(argv[0]))
-        exit(1)
+# Get MySQL username, password, database name, and state name from command-line arguments
+username = sys.argv[1]
+password = sys.argv[2]
+database = sys.argv[3]
+state_name = sys.argv[4]
 
-    # Extracting command line arguments
-    username, password, database, state_name = argv[1], argv[2], argv[3], argv[4]
+# Connect to the MySQL server
+db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
 
-    # Connect to MySQL server
-    try:
-        connection = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
-        cursor = connection.cursor()
+# Create a cursor object to execute SQL queries
+cursor = db.cursor()
 
-        # Execute query for specified state name
-        query = "SELECT * FROM states WHERE name = '{}' ORDER BY states.id ASC".format(state_name)
-        cursor.execute(query)
+# Define the SQL query with user input
+query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
 
-        # Fetch and display results
-        results = cursor.fetchall()
-        for row in results:
-            print(row)
+# Execute the query
+cursor.execute(query, (state_name,))
 
-    except MySQLdb.Error as e:
-        print("Error {}: {}".format(e.args[0], e.args[1]))
-    finally:
-        # Close the connection
-        if 'connection' in locals():
-            connection.close()
+# Fetch all the results
+results = cursor.fetchall()
+
+# Print the states
+for state in results:
+    print(state)
+
+# Close the cursor and connection
+cursor.close()
+db.close()
