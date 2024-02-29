@@ -1,8 +1,5 @@
 import csv
-import json
 import requests
-import sys
-import os
 
 def export_todo_all_employees():
     # Get list of users
@@ -26,20 +23,5 @@ def export_todo_all_employees():
                 writer.writerow([user_id, username, task['completed'], task['title']])
         print(f"CSV file '{filename}' has been created successfully.")
 
-def user_info(id):
-    filename = str(id) + ".csv"
-    if not os.path.exists(filename):
-        print(f"Number of tasks in CSV: 0")
-    else:
-        with open(filename, 'r') as f:
-            reader = csv.reader(f)
-            num_tasks = sum(1 for row in reader) - 1  # Subtract 1 to exclude header row
-        print(f"Number of tasks in CSV: {num_tasks} (OK)")
-
 if name == "__main__":
-    if len(sys.argv) == 1:
-        export_todo_all_employees()
-    elif len(sys.argv) == 2:
-        user_info(int(sys.argv[1]))
-    else:
-        print("Usage: python script.py <optional: employee_id>")
+    export_todo_all_employees()
