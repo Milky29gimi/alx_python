@@ -1,41 +1,47 @@
+'''importing libraries'''
+"""importing libraries"""
+# iimporting libraries
 import json
 import requests
+import sys
 
-def get_todo_all_employees():
-    # Initialize dictionary to store data for all employees
-    all_employees_data = {}
+def get_all_employees_todo_progress():
+    base_url = "https://jsonplaceholder.typicode.com"
+    users_url = f"{base_url}/users"
 
-    # Get list of users
-    users_response = requests.get('https://jsonplaceholder.typicode.com/users')
-    users_data = users_response.json()
+    try:
+        users_response = requests.get(users_url)
+        users_data = users_response.json()
 
-    # Iterate over each user
-    for user in users_data:
-        user_id = user['id']
-        username = user['username']
+        all_employees_tasks = {}
 
-        # Get TODO list for the user
-        todo_response = requests.get(f'https://jsonplaceholder.typicode.com/users/{user_id}/todos')
-        todo_data = todo_response.json()
+        for user in users_data:
+            employee_id = user["id"]
+            todos_url = f"{base_url}/users/{employee_id}/todos"
+            todos_response = requests.get(todos_url)
+            todos_data = todos_response.json()
 
-        # Prepare data for the user
-        user_tasks = []
-        for task in todo_data:
-            task_info = {
-                "username": username,
-                "task": task['title'],
-                "completed": task['completed']
-            }
-            user_tasks.append(task_info)
+            tasks = [
+                {
+                    "username": user["username"],
+                    "task": task["title"],
+                    "completed": task["completed"]
+                }
+                for task in todos_data
+            ]
 
-        # Store data for the user in the dictionary
-        all_employees_data[user_id] = user_tasks
+            all_employees_tasks[employee_id] = tasks
 
-    # Write data to JSON file
-    filename = "todo_all_employees.json"
-    with open(filename, 'w') as file:
-        json.dump(all_employees_data, file, indent=4)
-    print(f"JSON file '{filename}' has been created successfully.")
+        # Write the dictionary to a JSON file
+        filename = "todo_all_employees.json"
+        with open(filename, "w", encoding="utf-8") as json_file:
+            json.dump(all_employees_tasks, json_file, ensure_ascii=False, indent=4)
 
-if name == "__main__":
-    get_todo_all_employees()
+        print(f"Data exported to {filename}")
+
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    get_all_employees_todo_progress()
